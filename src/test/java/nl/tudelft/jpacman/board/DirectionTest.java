@@ -29,7 +29,7 @@ public class DirectionTest {
     @Test
     void testEast() {
         Direction east = Direction.valueOf("EAST");
-        assertThat(east.getDeltaX()).isEqualTo(1);
+        assertThat(east.getDeltaX()).isEqualTo(-1);
     }
 
     @Test
