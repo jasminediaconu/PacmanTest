@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BoardTest {
+class BoardTest {
     /**
      * Board creation test
      */
@@ -21,18 +21,6 @@ public class BoardTest {
 
         assertThat(board.getHeight()).isEqualTo(1);
         assertThat(board.getWidth()).isEqualTo(1);
-    }
-
-    /**
-     * squareAt test
-     */
-    @Test
-    void testSquareAt() {
-        Square[][] grid = new BasicSquare[1][0];
-        Board board = new Board(grid);
-
-        assertThat(board.squareAt(1,0)).isEqualTo(grid[1][0]);
-
     }
 
 }
