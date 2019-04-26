@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardTest {
+
     /**
      * Board creation test
      */
@@ -22,5 +23,4 @@ class BoardTest {
         assertThat(board.getHeight()).isEqualTo(1);
         assertThat(board.getWidth()).isEqualTo(1);
     }
-
 }
