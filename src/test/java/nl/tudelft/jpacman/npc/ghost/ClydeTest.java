@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.npc.ghost;
 
 import nl.tudelft.jpacman.board.BoardFactory;
+import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.LevelFactory;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import nl.tudelft.jpacman.sprite.PacManSprites;
@@ -9,24 +10,28 @@ import org.junit.jupiter.api.Test;
 
 public class ClydeTest {
     private static final PacManSprites SPRITES = new PacManSprites();
-    private BoardFactory board;
-    private LevelFactory level;
-    private GhostFactory ghost;
+    private BoardFactory boardFactory;
+    private LevelFactory levelFactory;
+    private GhostFactory ghostFactory;
+    private GhostMapParser ghostMapParser;
 
     /**
      * Setup of the Board, Level and Ghost.
      */
     @BeforeEach void setup() {
-        board = new BoardFactory(SPRITES);
-        ghost = new GhostFactory(SPRITES);
-        level = new LevelFactory(SPRITES, ghost, new PointCalculatorLoader().load());
+        boardFactory = new BoardFactory(SPRITES);
+        ghostFactory = new GhostFactory(SPRITES);
+        levelFactory = new LevelFactory(SPRITES, ghostFactory, new PointCalculatorLoader().load());
+        ghostMapParser = new GhostMapParser(levelFactory, boardFactory, ghostFactory);
     }
 
     /**
      *
      */
-    @Test void nextAiMoveTest() {
-
+    @Test void nextAiMoveTestWithin8Squares() {
+        char[][] grid = { ("############").toCharArray(),
+            ("#P        C#").toCharArray(), ("############").toCharArray()};
+        Level level = ghostMapParser.parseMap(grid);
     }
 
 }
