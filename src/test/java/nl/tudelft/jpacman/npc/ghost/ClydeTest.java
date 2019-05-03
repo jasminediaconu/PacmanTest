@@ -1,18 +1,23 @@
 package nl.tudelft.jpacman.npc.ghost;
 
 import nl.tudelft.jpacman.board.BoardFactory;
+import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.LevelFactory;
+import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.level.PlayerFactory;
+import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Test for the ghost Clyde.
+ */
 public class ClydeTest {
     private static final PacManSprites SPRITES = new PacManSprites();
     private BoardFactory boardFactory;
@@ -42,6 +47,10 @@ public class ClydeTest {
         grid.add(("############"));
 
         Level level = ghostMapParser.parseMap(grid);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+        pacman.setDirection(Direction.EAST);
+        Ghost ghost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
     }
 
 }
