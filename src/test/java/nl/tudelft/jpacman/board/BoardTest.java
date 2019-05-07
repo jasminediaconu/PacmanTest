@@ -38,7 +38,7 @@ class BoardTest {
      * Arguments that test the inputs that generate a return that is true.
      * @return List of arguments
      */
-    private static Stream<Arguments> withinBordersParametersTrue() {
+    public static Stream<Arguments> withinBordersParametersTrue() {
         return Stream.of(
             Arguments.of(0, 0),
             Arguments.of(0, 1),
@@ -54,7 +54,7 @@ class BoardTest {
      */
     @ParameterizedTest
     @MethodSource("withinBordersParametersTrue")
-    void withinBordersTrueTest(int x, int y) {
+    public void withinBordersTrueTest(int x, int y) {
         final int size = 2;
         Square[][] grid = new BasicSquare[size][size];
         for (int i = 0; i < grid.length; i++) {
@@ -73,7 +73,7 @@ class BoardTest {
      * Arguments that test the inputs that generate a return that is false.
      * @return List of arguments
      */
-    private static Stream<Arguments> withinBordersParametersFalse() {
+    public static Stream<Arguments> withinBordersParametersFalse() {
         return Stream.of(
             Arguments.of(0, 2),
             Arguments.of(2, 0),
@@ -88,7 +88,7 @@ class BoardTest {
      */
     @ParameterizedTest
     @MethodSource("withinBordersParametersFalse")
-    void withinBordersFalseTest(int x, int y) {
+    public void withinBordersFalseTest(int x, int y) {
         final int size = 2;
         Square[][] grid = new BasicSquare[size][size];
         for (int i = 0; i < grid.length; i++) {
