@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test for the ghost Clyde.
@@ -38,19 +41,70 @@ public class ClydeTest {
     }
 
     /**
-     *
+     * On Point testing.
      */
     @Test void nextAiMoveTestWithin8Squares() {
         List<String> grid = new ArrayList<>();
-        grid.add(("############"));
-        grid.add(("#P        C#"));
-        grid.add(("############"));
+        grid.add("###########");
+        grid.add("#P       C#");
+        grid.add("###########");
 
         Level level = ghostMapParser.parseMap(grid);
         Player pacman = playerFactory.createPacMan();
         level.registerPlayer(pacman);
         pacman.setDirection(Direction.EAST);
-        Ghost ghost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.EAST));
     }
 
+    /**
+     * In point testing.
+     */
+    @Test void nextAiMoveTestLessThan8Squares() {
+        List<String> grid = new ArrayList<>();
+        grid.add("#############");
+        grid.add("#P    C     #");
+        grid.add("#############");
+
+        Level level = ghostMapParser.parseMap(grid);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+        pacman.setDirection(Direction.SOUTH);
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.EAST));
+    }
+
+    /**
+     * Off Point testing.
+     */
+    @Test void nextAiMoveTestWithin9Squares() {
+        List<String> grid = new ArrayList<>();
+        grid.add("#############");
+        grid.add("#P        C #");
+        grid.add("#############");
+
+        Level level = ghostMapParser.parseMap(grid);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+        pacman.setDirection(Direction.SOUTH);
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.WEST));
+    }
+
+    /**
+     * Out point testing.
+     */
+    @Test void nextAiMoveTestMoreThan9Squares() {
+        List<String> grid = new ArrayList<>();
+        grid.add("#############");
+        grid.add("#P         C#");
+        grid.add("#############");
+
+        Level level = ghostMapParser.parseMap(grid);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+        pacman.setDirection(Direction.SOUTH);
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.WEST));
+    }
 }
