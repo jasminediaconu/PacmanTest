@@ -59,25 +59,22 @@ public class InkyTest {
     }
 
     /**
-     * Bad Weather. No Path between player and blinky.
+     * Bad Weather. No Player.
      */
     @Test
-    void nextAiMoveNoPathPlayerBlinkyTest() {
+    void nextAiMoveNoPlayer() {
         List<String> grid = new ArrayList<>();
         grid.add("#####################");
-        grid.add("#        P  #   B  I#");
+        grid.add("#               B  I#");
         grid.add("#####################");
 
         Level level = ghostMapParser.parseMap(grid);
-        Player pacman = playerFactory.createPacMan();
-        level.registerPlayer(pacman);
-        pacman.setDirection(Direction.WEST);
         Inky inkyGhost = Navigation.findUnitInBoard(Inky.class, level.getBoard());
         assertThat(inkyGhost.nextAiMove()).isEqualTo(Optional.empty());
     }
 
     /**
-     * Bad Weather. No path between pacman and inky.
+     * Bad Weather. No path between player and inky.
      */
     @Test
     void nextAiMoveNoPathPlayerInkyTest() {
@@ -113,7 +110,7 @@ public class InkyTest {
     }
 
     /**
-     * Good weather. Inky ahead of blinky and pacman moving away, inky moves away.
+     * Good weather. Inky moves towards pacman and does not follow blinky.
      */
     @Test
     void nextAiMoveInkyMovesAwayFromPlayerTest() {
@@ -125,9 +122,9 @@ public class InkyTest {
         Level level = ghostMapParser.parseMap(grid);
         Player pacman = playerFactory.createPacMan();
         level.registerPlayer(pacman);
-        pacman.setDirection(Direction.WEST);
+        pacman.setDirection(Direction.EAST);
         Inky inkyGhost = Navigation.findUnitInBoard(Inky.class, level.getBoard());
-        assertThat(inkyGhost.nextAiMove()).isEqualTo(Optional.of(Direction.EAST));
+        assertThat(inkyGhost.nextAiMove()).isEqualTo(Optional.of(Direction.WEST));
     }
 
 }

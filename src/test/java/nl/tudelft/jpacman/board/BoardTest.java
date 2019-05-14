@@ -34,40 +34,6 @@ class BoardTest {
     }
 
     /**
-     * Check if the values are within the borders.
-     */
-    @Test
-    void testBoardWithinBordersTrue() {
-        Square[][] grid = new BasicSquare[1][1];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                grid[i][j] = new BasicSquare();
-            }
-        }
-
-        Board board = new Board(grid);
-
-        assertThat(board.withinBorders(0, 0)).isTrue();
-    }
-
-    /**
-     * Check if the values are out of the borders.
-     */
-    @Test
-    void testBoardWithinBordersFalse() {
-        Square[][] grid = new BasicSquare[1][1];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                grid[i][j] = new BasicSquare();
-            }
-        }
-
-        Board board = new Board(grid);
-
-        assertThat(board.withinBorders(1, 1)).isFalse();
-    }
-
-    /**
      * Generate the arguments for the test function.
      * Arguments that test the inputs that generate a return that is true.
      * @return List of arguments

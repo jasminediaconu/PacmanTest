@@ -106,4 +106,29 @@ public class ClydeTest {
         Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
         assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.WEST));
     }
+
+    @Test void nextAiMoveTestNoPlayer() {
+        List<String> grid = new ArrayList<>();
+        grid.add("#############");
+        grid.add("#          C#");
+        grid.add("#############");
+
+        Level level = ghostMapParser.parseMap(grid);
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.empty());
+    }
+
+    @Test void nextAiMoveTestNoPath() {
+        List<String> grid = new ArrayList<>();
+        grid.add("#############");
+        grid.add("#P   #     C#");
+        grid.add("#############");
+
+        Level level = ghostMapParser.parseMap(grid);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+        pacman.setDirection(Direction.SOUTH);
+        Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.empty());
+    }
 }
