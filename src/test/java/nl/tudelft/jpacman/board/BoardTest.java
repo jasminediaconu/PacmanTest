@@ -74,10 +74,10 @@ class BoardTest {
      */
     public static Stream<Arguments> withinBordersParametersTrue() {
         return Stream.of(
-            Arguments.of(0, 0),
-            Arguments.of(0, 1),
-            Arguments.of(1, 0),
-            Arguments.of(1, 1)
+            Arguments.of(0, 0), //In Point & On Point Width/Height
+            Arguments.of(0, 1), //In Point & Off Point Height
+            Arguments.of(1, 0), //In Point & Off Point Width
+            Arguments.of(1, 1)  //In Point
         );
     }
 
@@ -109,9 +109,12 @@ class BoardTest {
      */
     public static Stream<Arguments> withinBordersParametersFalse() {
         return Stream.of(
-            Arguments.of(0, 2),
-            Arguments.of(2, 0),
-            Arguments.of(2, 2)
+            Arguments.of(-1, -1), //Out Point
+            Arguments.of(0, -1),  //Out Point & Off Point Height
+            Arguments.of(-1, 0),  //Out Point & Off Point Width
+            Arguments.of(0, 2),   //Out Point & On Point Height
+            Arguments.of(2, 0),   //Out Point & On Point Width
+            Arguments.of(2, 2)    //Out Point
         );
     }
 
