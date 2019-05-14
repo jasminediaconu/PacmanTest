@@ -40,7 +40,7 @@ public class ClydeTest {
     }
 
     /**
-     * On Point testing.
+     * Good Weather case. On Point testing.
      */
     @Test void nextAiMoveTestWithin8Squares() {
         List<String> grid = new ArrayList<>();
@@ -57,7 +57,7 @@ public class ClydeTest {
     }
 
     /**
-     * In point testing.
+     * Good Weather case. In point testing.
      */
     @Test void nextAiMoveTestLessThan8Squares() {
         List<String> grid = new ArrayList<>();
@@ -74,7 +74,7 @@ public class ClydeTest {
     }
 
     /**
-     * Off Point testing.
+     * Good Weather case. Off Point testing.
      */
     @Test void nextAiMoveTestWithin9Squares() {
         List<String> grid = new ArrayList<>();
@@ -91,7 +91,7 @@ public class ClydeTest {
     }
 
     /**
-     * Out point testing.
+     * Good Weather case. Out point testing.
      */
     @Test void nextAiMoveTestMoreThan9Squares() {
         List<String> grid = new ArrayList<>();
@@ -107,6 +107,9 @@ public class ClydeTest {
         assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.of(Direction.WEST));
     }
 
+    /**
+     * Bad Weather case. Check if there is no player.
+     */
     @Test void nextAiMoveTestNoPlayer() {
         List<String> grid = new ArrayList<>();
         grid.add("#############");
@@ -118,6 +121,9 @@ public class ClydeTest {
         assertThat(clydeGhost.nextAiMove()).isEqualTo(Optional.empty());
     }
 
+    /**
+     * Bad Weather case. Check if there is no path.
+     */
     @Test void nextAiMoveTestNoPath() {
         List<String> grid = new ArrayList<>();
         grid.add("#############");
