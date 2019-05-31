@@ -7,12 +7,12 @@ import org.mockito.Mockito;
 
 /**
  * Player collision test.
- * It checks if the collisions between different units are working as intended.
+ * It checks collisions for the PlayerCollisions class.
  */
 public class PlayerCollisionsTest extends CollisionMapTest {
 
     /**
-     * Mock Player, Pellet, Ghost classes and initialize PlayerCollisions object.
+     * Mock Player, Pellet, Ghost classes and sets the PlayerCollisions object.
      */
     @BeforeEach
     @Override
