@@ -2,6 +2,7 @@ package nl.tudelft.jpacman.level;
 
 import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.PointCalculator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -63,6 +64,12 @@ public abstract class CollisionMapTest {
     public PointCalculator getPointCalculator() {
         return pointCalculator;
     }
+
+    /**
+     * Initialize required parameters for the test cases.
+     */
+    @BeforeEach
+    abstract void init();
 
     /**
      * Test collisions between two players.

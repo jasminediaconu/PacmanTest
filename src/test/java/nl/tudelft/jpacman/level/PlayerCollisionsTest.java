@@ -15,6 +15,7 @@ public class PlayerCollisionsTest extends CollisionMapTest {
      * Mock Player, Pellet, Ghost classes and initialize PlayerCollisions object.
      */
     @BeforeEach
+    @Override
     void init() {
         this.setPlayer(Mockito.mock(Player.class));
         this.setPellet(Mockito.mock(Pellet.class));
