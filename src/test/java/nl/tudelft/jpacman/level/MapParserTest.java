@@ -6,17 +6,21 @@ import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.lang.model.element.PackageElement;
-
 import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * MapParser class test.
+ */
 public class MapParserTest {
     private LevelFactory levelFactory;
     private BoardFactory boardFactory;
     private MapParser mapParser;
 
+    /**
+     * Initialize LevelFactory, BoardFactory, MapParser.
+     */
     @BeforeEach
     public void setup() {
         levelFactory = mock(LevelFactory.class);
@@ -43,7 +47,4 @@ public class MapParserTest {
 
         //TODO ask jasmine about what she thinks.
     }
-
-
-
 }

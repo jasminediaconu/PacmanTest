@@ -5,6 +5,12 @@ import nl.tudelft.jpacman.points.PointCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.eq;
 
 /**
  * CollisionInteractionMap, DefaultPlayerInteractionMap, PlayerCollisions test.
@@ -76,9 +82,9 @@ public abstract class CollisionMapTest {
      */
     @Test
     void testCollisionBetweenPlayers() {
-        Player pl = Mockito.mock(Player.class);
+        Player pl = mock(Player.class);
         collisionMap.collide(player, pl);
-        Mockito.verifyZeroInteractions(player, pl);
+        verifyZeroInteractions(player, pl);
     }
 
     /**
@@ -86,9 +92,9 @@ public abstract class CollisionMapTest {
      */
     @Test
     void testCollisionGhostGhost() {
-        Ghost g1 = Mockito.mock(Ghost.class);
+        Ghost g1 = mock(Ghost.class);
         collisionMap.collide(ghost, g1);
-        Mockito.verifyZeroInteractions(ghost, g1);
+        verifyZeroInteractions(ghost, g1);
     }
 
     /**
@@ -96,9 +102,9 @@ public abstract class CollisionMapTest {
      */
     @Test
     void testCollisionPelletPellet() {
-        Pellet p1 = Mockito.mock(Pellet.class);
+        Pellet p1 = mock(Pellet.class);
         collisionMap.collide(pellet, p1);
-        Mockito.verifyZeroInteractions(pellet, p1);
+        verifyZeroInteractions(pellet, p1);
     }
 
     /**
@@ -108,12 +114,12 @@ public abstract class CollisionMapTest {
     void testCollisionPlayerPellet() {
         collisionMap.collide(player, pellet);
 
-        Mockito.verify(pointCalculator, Mockito.times(1)).consumedAPellet(
+        verify(pointCalculator, Mockito.times(1)).consumedAPellet(
             Mockito.eq(player),
             Mockito.eq(pellet));
 
-        Mockito.verify(pellet, Mockito.times(1)).leaveSquare();
-        Mockito.verifyNoMoreInteractions(player, pellet);
+        verify(pellet, Mockito.times(1)).leaveSquare();
+        verifyNoMoreInteractions(player, pellet);
     }
 
     /**
@@ -123,12 +129,12 @@ public abstract class CollisionMapTest {
     void testCollisionPelletPlayer() {
         collisionMap.collide(pellet, player);
 
-        Mockito.verify(pointCalculator, Mockito.times(1)).consumedAPellet(
-            Mockito.eq(player),
-            Mockito.eq(pellet));
+        verify(pointCalculator, times(1)).consumedAPellet(
+            eq(player),
+            eq(pellet));
 
-        Mockito.verify(pellet, Mockito.times(1)).leaveSquare();
-        Mockito.verifyNoMoreInteractions(pellet, player);
+        verify(pellet, Mockito.times(1)).leaveSquare();
+        verifyNoMoreInteractions(pellet, player);
     }
 
     /**
@@ -138,13 +144,13 @@ public abstract class CollisionMapTest {
     void testCollisionPlayerGhost() {
         collisionMap.collide(player, ghost);
 
-        Mockito.verify(pointCalculator, Mockito.times(1)).collidedWithAGhost(
-            Mockito.eq(player),
-            Mockito.eq(ghost));
+        verify(pointCalculator, times(1)).collidedWithAGhost(
+            eq(player),
+            eq(ghost));
 
-        Mockito.verify(player, Mockito.times(1)).setAlive(false);
-        Mockito.verify(player, Mockito.times(1)).setKiller(Mockito.eq(ghost));
-        Mockito.verifyNoMoreInteractions(player, ghost);
+        verify(player, times(1)).setAlive(false);
+        verify(player, times(1)).setKiller(eq(ghost));
+        verifyNoMoreInteractions(player, ghost);
     }
 
     /**
@@ -154,13 +160,13 @@ public abstract class CollisionMapTest {
     void testCollisionGhostPlayer() {
         collisionMap.collide(ghost, player);
 
-        Mockito.verify(pointCalculator, Mockito.times(1)).collidedWithAGhost(
-            Mockito.eq(player),
-            Mockito.eq(ghost));
+        verify(pointCalculator, times(1)).collidedWithAGhost(
+            eq(player),
+            eq(ghost));
 
-        Mockito.verify(player, Mockito.times(1)).setAlive(false);
-        Mockito.verify(player, Mockito.times(1)).setKiller(Mockito.eq(ghost));
-        Mockito.verifyNoMoreInteractions(player, ghost);
+        verify(player, times(1)).setAlive(false);
+        verify(player, times(1)).setKiller(eq(ghost));
+        verifyNoMoreInteractions(player, ghost);
     }
 
     /**
@@ -169,7 +175,7 @@ public abstract class CollisionMapTest {
     @Test
     void testCollisionGhostPellet() {
         collisionMap.collide(ghost, pellet);
-        Mockito.verifyZeroInteractions(ghost, pellet);
+        verifyZeroInteractions(ghost, pellet);
     }
 
     /**
@@ -178,6 +184,6 @@ public abstract class CollisionMapTest {
     @Test
     void testCollisionPelletGhost() {
         collisionMap.collide(pellet, ghost);
-        Mockito.verifyZeroInteractions(pellet, ghost);
+        verifyZeroInteractions(pellet, ghost);
     }
 }
