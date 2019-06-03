@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -116,6 +115,6 @@ public class MapParserTest {
     public void parseMapFileNotExistentBadWeather() {
         assertThrows(PacmanConfigurationException.class, () -> mapParser.parseMap("test.txt"));
     }
-    
+
 
 }
