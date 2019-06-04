@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.Mockito.mock;
 
 /**
- * DefaultPlayerInteractionMap test.
+ * DefaultPlayerInteractionMap mockito test.
  * It checks collisions for the DefaultPlayerInteractionMap class.
  */
 public class DefaultPlayerInteractionMapTest extends CollisionMapTest {
