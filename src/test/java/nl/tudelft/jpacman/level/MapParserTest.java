@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,7 +82,7 @@ public class MapParserTest {
      */
     @Test
     public void parseMapInputStreamGoodWeatherTest() throws IOException {
-        byte[] data = "#PG. #".getBytes();
+        byte[] data = "#PG. #".getBytes(Charset.forName("UTF-8"));
 
         InputStream input = new ByteArrayInputStream(data);
         try {
