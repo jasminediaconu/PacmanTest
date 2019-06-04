@@ -24,8 +24,6 @@ import static org.mockito.Mockito.mock;
  * MapParser class test.
  */
 public class MapParserTest {
-    private LevelFactory levelFactory;
-    private BoardFactory boardFactory;
     private MapParser mapParser;
 
     /**
@@ -33,8 +31,8 @@ public class MapParserTest {
      */
     @BeforeEach
     public void setup() {
-        levelFactory = mock(LevelFactory.class);
-        boardFactory = mock(BoardFactory.class);
+        LevelFactory levelFactory = mock(LevelFactory.class);
+        BoardFactory boardFactory = mock(BoardFactory.class);
         mapParser = new MapParser(levelFactory, boardFactory);
         Square square = mock(Square.class);
         Pellet pellet = mock(Pellet.class);
@@ -52,13 +50,11 @@ public class MapParserTest {
         char[][] map = {{'#', 'P', 'G', '.', ' ', '#'}};
 
         try {
-            Level level = mapParser.parseMap(map);
+            mapParser.parseMap(map);
         }
         catch (Exception e) {
             fail("Exception was thrown. " + e.getMessage());
         }
-
-        //TODO ask jasmine about what she thinks.
     }
 
     /**
@@ -69,7 +65,7 @@ public class MapParserTest {
         List<String> map = Arrays.asList("#PG. #");
 
         try {
-            Level level = mapParser.parseMap(map);
+            mapParser.parseMap(map);
         }
         catch (Exception e) {
             fail("Exception was thrown. " + e.getMessage());
@@ -86,7 +82,7 @@ public class MapParserTest {
 
         InputStream input = new ByteArrayInputStream(data);
         try {
-            Level level = mapParser.parseMap(input);
+            mapParser.parseMap(input);
         }
         catch (Exception e) {
             fail("Exception was thrown. " + e.getMessage());
