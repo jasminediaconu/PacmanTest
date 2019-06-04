@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.Mockito.mock;
 
 /**
- * Player collision test.
+ * Player collision mockito test.
  * It checks collisions for the PlayerCollisions class.
  */
 public class PlayerCollisionsTest extends CollisionMapTest {

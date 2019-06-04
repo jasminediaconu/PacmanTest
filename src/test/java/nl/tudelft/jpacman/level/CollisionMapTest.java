@@ -13,7 +13,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.eq;
 
 /**
- * CollisionInteractionMap, DefaultPlayerInteractionMap, PlayerCollisions test.
+ * CollisionMap test.
  * Tests all the classes that use the CollisionMap interface.
  */
 public abstract class CollisionMapTest {
