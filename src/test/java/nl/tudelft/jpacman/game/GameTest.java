@@ -6,64 +6,86 @@ import nl.tudelft.jpacman.level.PlayerFactory;
 import nl.tudelft.jpacman.points.PointCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+/**
+ * Game mockito test.
+ */
 public class GameTest {
     private Game game;
     private Level level;
 
+    /**
+     * Initialize variables for the test cases.
+     */
     @BeforeEach
     public void setup() {
-        PlayerFactory playerFactory = Mockito.mock(PlayerFactory.class);
-        level = Mockito.mock(Level.class);
-        PointCalculator pointCalculator = Mockito.mock(PointCalculator.class);
-        Player player = Mockito.mock(Player.class);
+        PlayerFactory playerFactory = mock(PlayerFactory.class);
+        level = mock(Level.class);
+        PointCalculator pointCalculator = mock(PointCalculator.class);
+        Player player = mock(Player.class);
 
-        Mockito.when(playerFactory.createPacMan()).thenReturn(player);
+        when(playerFactory.createPacMan()).thenReturn(player);
 
         GameFactory gameFactory = new GameFactory(playerFactory);
 
         game = gameFactory.createSinglePlayerGame(level, pointCalculator);
     }
 
+    /**
+     * If the player is still alive continue the game.
+     */
     @Test
     public void startPlayerAliveRemainingPelletsTest() {
-        Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
-        Mockito.when(level.remainingPellets()).thenReturn(2);
+        when(level.isAnyPlayerAlive()).thenReturn(true);
+        when(level.remainingPellets()).thenReturn(2);
         game.start();
         assertThat(game.isInProgress()).isTrue();
     }
 
+    /**
+     * If the player is dead the game ends.
+     */
     @Test
     public void startPlayerDeadRemainingPelletsTest() {
-        Mockito.when(level.isAnyPlayerAlive()).thenReturn(false);
-        Mockito.when(level.remainingPellets()).thenReturn(2);
+        when(level.isAnyPlayerAlive()).thenReturn(false);
+        when(level.remainingPellets()).thenReturn(2);
         game.start();
         assertThat(game.isInProgress()).isFalse();
     }
 
+    /**
+     * If the player is alive but there are no more pellets, the game ends.
+     */
     @Test
     public void startPlayerAliveNoRemainingPelletsTest() {
-        Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
-        Mockito.when(level.remainingPellets()).thenReturn(0);
+        when(level.isAnyPlayerAlive()).thenReturn(true);
+        when(level.remainingPellets()).thenReturn(0);
         game.start();
         assertThat(game.isInProgress()).isFalse();
     }
 
+    /**
+     * If the player is dead and there are no more pellets, the game ends.
+     */
     @Test
     public void startPlayerDeadNoRemainingPelletsTest() {
-        Mockito.when(level.isAnyPlayerAlive()).thenReturn(false);
-        Mockito.when(level.remainingPellets()).thenReturn(0);
+        when(level.isAnyPlayerAlive()).thenReturn(false);
+        when(level.remainingPellets()).thenReturn(0);
         game.start();
         assertThat(game.isInProgress()).isFalse();
     }
 
+    /**
+     * If the game is already in progress when you start it, then continue the game.
+     */
     @Test
     public void startGameAlreadyInProgressTest() {
-        Mockito.when(level.isAnyPlayerAlive()).thenReturn(true);
-        Mockito.when(level.remainingPellets()).thenReturn(2);
+        when(level.isAnyPlayerAlive()).thenReturn(true);
+        when(level.remainingPellets()).thenReturn(2);
         game.start();
         game.start();
         assertThat(game.isInProgress()).isTrue();
