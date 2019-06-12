@@ -5,6 +5,8 @@ import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.npc.ghost.Clyde;
+import nl.tudelft.jpacman.npc.ghost.Navigation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -94,5 +96,38 @@ public class UserStory2Test {
         getGame().move(player, Direction.WEST);
 
         assertThat(player.getSquare()).isNotEqualTo(destination);
+    }
+
+    /**
+     * S2.4 Scenario: The player dies.
+     */
+    @Test
+    public void playerDies() {
+        launcher.withMapFile("/simplemap.txt");
+        launcher.launch();
+        getGame().start();
+        Player player = getGame().getPlayers().get(0);
+        //Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, getGame().getLevel().getBoard());
+
+        getGame().move(player, Direction.WEST);
+
+        //player.setKiller(clydeGhost);
+
+        assertThat(player.isAlive()).isFalse();
+        assertThat(getGame().isInProgress()).isFalse();
+    }
+
+    /**
+     * S2.5 Scenario: Player wins, extends S2.1.
+     */
+    @Test
+    public void playerWins() {
+        launcher.withMapFile("/simplemap.txt");
+        launcher.launch();
+        getGame().start();
+        Player player = getGame().getPlayers().get(0);
+
+        // The game ends
+        assertThat(getGame().isInProgress()).isFalse();
     }
 }
