@@ -5,8 +5,6 @@ import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.npc.ghost.Clyde;
-import nl.tudelft.jpacman.npc.ghost.Navigation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,12 +40,12 @@ public class UserStory2Test {
         Player player = getGame().getPlayers().get(0);
 
         Square startingSquare = player.getSquare();
-        Square destination = startingSquare.getSquareAt(Direction.WEST);
+        Square destination = startingSquare.getSquareAt(Direction.EAST);
 
         assertThat(player.getScore()).isEqualTo(0);
         assertThat(getGame().getLevel().remainingPellets()).isEqualTo(1);
 
-        getGame().move(player, Direction.WEST);
+        getGame().move(player, Direction.EAST);
 
         // The player actually moves to the pellet's square
         assertThat(player.getSquare()).isEqualTo(destination);
@@ -68,11 +66,11 @@ public class UserStory2Test {
         Player player = getGame().getPlayers().get(0);
 
         Square startingSquare = player.getSquare();
-        Square destination = startingSquare.getSquareAt(Direction.WEST);
+        Square destination = startingSquare.getSquareAt(Direction.EAST);
 
         assertThat(player.getScore()).isEqualTo(0);
 
-        getGame().move(player, Direction.WEST);
+        getGame().move(player, Direction.EAST);
 
         // The player actually moves to the pellet's square
         assertThat(player.getSquare()).isEqualTo(destination);
@@ -91,9 +89,9 @@ public class UserStory2Test {
         Player player = getGame().getPlayers().get(0);
 
         Square startingSquare = player.getSquare();
-        Square destination = startingSquare.getSquareAt(Direction.WEST);
+        Square destination = startingSquare.getSquareAt(Direction.EAST);
 
-        getGame().move(player, Direction.WEST);
+        getGame().move(player, Direction.EAST);
 
         assertThat(player.getSquare()).isNotEqualTo(destination);
     }
@@ -103,15 +101,12 @@ public class UserStory2Test {
      */
     @Test
     public void playerDies() {
-        launcher.withMapFile("/simplemap.txt");
+        launcher.withMapFile("/scenario-2.4.txt");
         launcher.launch();
         getGame().start();
         Player player = getGame().getPlayers().get(0);
-        //Clyde clydeGhost = Navigation.findUnitInBoard(Clyde.class, getGame().getLevel().getBoard());
 
-        getGame().move(player, Direction.WEST);
-
-        //player.setKiller(clydeGhost);
+        getGame().move(player, Direction.EAST);
 
         assertThat(player.isAlive()).isFalse();
         assertThat(getGame().isInProgress()).isFalse();
@@ -128,6 +123,7 @@ public class UserStory2Test {
         Player player = getGame().getPlayers().get(0);
 
         // The game ends
+        assertThat(player.isAlive()).isTrue();
         assertThat(getGame().isInProgress()).isFalse();
     }
 }
