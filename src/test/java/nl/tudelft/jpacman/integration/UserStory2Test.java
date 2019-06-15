@@ -92,9 +92,12 @@ public class UserStory2Test {
         Square startingSquare = player.getSquare();
         Square destination = startingSquare.getSquareAt(Direction.EAST);
 
+        assertThat(player.getSquare()).isEqualTo(startingSquare);
+
         getGame().move(player, Direction.EAST);
 
         assertThat(player.getSquare()).isNotEqualTo(destination);
+        assertThat(player.getSquare()).isEqualTo(startingSquare);
     }
 
     /**
@@ -106,6 +109,9 @@ public class UserStory2Test {
         launcher.launch();
         getGame().start();
         Player player = getGame().getPlayers().get(0);
+
+        assertThat(player.isAlive()).isTrue();
+        assertThat(getGame().isInProgress()).isTrue();
 
         getGame().move(player, Direction.EAST);
 
