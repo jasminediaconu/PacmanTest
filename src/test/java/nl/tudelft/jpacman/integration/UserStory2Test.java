@@ -37,6 +37,7 @@ public class UserStory2Test {
         launcher.withMapFile("/scenario-2.1.txt");
         launcher.launch();
         getGame().start();
+        final int score = 10;
         Player player = getGame().getPlayers().get(0);
 
         Square startingSquare = player.getSquare();
@@ -50,7 +51,7 @@ public class UserStory2Test {
         // The player actually moves to the pellet's square
         assertThat(player.getSquare()).isEqualTo(destination);
         //The player earns the points
-        assertThat(player.getScore()).isEqualTo(10);
+        assertThat(player.getScore()).isEqualTo(score);
         // The pellet disappears
         assertThat(getGame().getLevel().remainingPellets()).isEqualTo(0);
     }
@@ -117,7 +118,7 @@ public class UserStory2Test {
      */
     @Test
     public void playerWins() {
-        launcher.withMapFile("/simplemap.txt");
+        launcher.withMapFile("/scenario-2.5.txt");
         launcher.launch();
         getGame().start();
         Player player = getGame().getPlayers().get(0);
