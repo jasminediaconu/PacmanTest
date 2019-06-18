@@ -145,6 +145,17 @@ When  the player hits the "Start" button;
 Then  the game is resumed.
 ```
 
+#### Story 5: Levels
+```
+When a player, wins the level it starts a different one.
+
+Scenario S5.1: Finish the level.
+Then start the next level.
+
+Scenario S5.2: Finish the last level.
+Game ends.
+```
+
 ## 3. User Interface
 
 The user interface for JPacman is relatively simple.  The game is

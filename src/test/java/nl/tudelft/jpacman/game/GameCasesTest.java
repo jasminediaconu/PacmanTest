@@ -42,6 +42,9 @@ public class GameCasesTest {
         assertThat(game.isInProgress()).isFalse();
 
         game.start();
+
+        assertThat(game.isInProgress()).isTrue();
+
         game.move(player, Direction.EAST);
 
         assertThat(player.getScore()).isEqualTo(score);
