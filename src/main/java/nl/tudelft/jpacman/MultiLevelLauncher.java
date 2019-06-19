@@ -5,7 +5,7 @@ import nl.tudelft.jpacman.game.MultiLevelGame;
 /**
  * Creates and launches the JPacMan UI with multiple levels.
  */
-public class MultiLevelLauncher extends  Launcher {
+public class MultiLevelLauncher extends Launcher {
 
     private MultiLevelGame multiGame;
 

@@ -15,22 +15,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Game test for the user stories cases.
  */
-public class GameCasesTest {
+public abstract class GameCasesTest {
 
     private Launcher launcher;
     private Game game;
     private Player player;
 
+
+    public void setLauncher(Launcher launcher) {
+        this.launcher = launcher;
+    }
+
+    public Launcher getLauncher() {
+        return launcher;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     /**
      * Setting up the variables for each test.
      */
     @BeforeEach()
-    public void setup() {
-        launcher = new Launcher().withMapFile("/simplemap.txt");
-        launcher.launch();
-        game = launcher.getGame();
-        player = game.getPlayers().get(0);
-    }
+    public abstract void setup();
 
     /**
      * When the user consumes a pellet that is not the last one.
@@ -61,7 +77,6 @@ public class GameCasesTest {
     void testWin() {
         Level.LevelObserver levelObserver = Mockito.mock(Level.LevelObserver.class);
 
-        launcher.launch();
         game.getLevel().addObserver(levelObserver);
         assertThat(game.isInProgress()).isFalse();
 
