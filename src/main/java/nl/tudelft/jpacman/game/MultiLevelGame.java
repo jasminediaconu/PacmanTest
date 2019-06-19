@@ -8,7 +8,7 @@ import nl.tudelft.jpacman.points.PointCalculator;
 import java.util.List;
 
 /**
- *
+ * A game with one player and multiple levels.
  */
 public class MultiLevelGame extends Game {
     /**
@@ -23,9 +23,9 @@ public class MultiLevelGame extends Game {
 
     /**
      *
-     * @param player
-     * @param level
-     * @param pointCalculator
+     * @param player Player type
+     * @param level Level type
+     * @param pointCalculator PointCalculator type
      */
     public MultiLevelGame(Player player, Level level, PointCalculator pointCalculator) {
         super(pointCalculator);
