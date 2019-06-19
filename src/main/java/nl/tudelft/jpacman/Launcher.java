@@ -78,7 +78,7 @@ public class Launcher {
         return game;
     }
 
-    private PointCalculator loadPointCalculator() {
+    protected PointCalculator loadPointCalculator() {
         return new PointCalculatorLoader().load();
     }
 

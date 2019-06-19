@@ -39,6 +39,10 @@ public class GameFactory {
         return new SinglePlayerGame(playerFactory.createPacMan(), level, pointCalculator);
     }
 
+    public MultiLevelGame createMultiLevelGame(Level level, PointCalculator pointCalculator) {
+        return new MultiLevelGame(playerFactory.createPacMan(), level, pointCalculator);
+    }
+
     /**
      * Returns the player factory associated with this game factory.
      *

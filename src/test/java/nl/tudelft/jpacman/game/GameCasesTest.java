@@ -53,8 +53,8 @@ public abstract class GameCasesTest {
      */
     @Test
     void testConsumePellet() {
-
         final int score = 10;
+
         assertThat(game.isInProgress()).isFalse();
 
         game.start();
