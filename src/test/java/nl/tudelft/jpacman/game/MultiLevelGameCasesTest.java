@@ -7,6 +7,10 @@ import nl.tudelft.jpacman.level.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MultiLevelGameCasesTest extends GameCasesTest {
@@ -14,7 +18,8 @@ public class MultiLevelGameCasesTest extends GameCasesTest {
     @BeforeEach
     @Override
     public void setup() {
-        setLauncher(new MultiLevelLauncher().withMapFile("/simplemap.txt"));
+        List<String> files = Arrays.asList("/simplemap.txt", "Level 2.txt");
+        setLauncher(new MultiLevelLauncher().withListOfFiles(files));
         getLauncher().launch();
         setGame(getLauncher().getGame());
         setPlayer(getGame().getPlayers().get(0));

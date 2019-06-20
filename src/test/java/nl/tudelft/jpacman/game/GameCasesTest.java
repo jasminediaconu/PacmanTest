@@ -69,29 +69,6 @@ public abstract class GameCasesTest {
         game.stop();
     }
 
-
-    /**
-     * When the user consumes eats the last pellet and wins the game.
-     */
-    @Test
-    void testWin() {
-        Level.LevelObserver levelObserver = Mockito.mock(Level.LevelObserver.class);
-
-        game.getLevel().addObserver(levelObserver);
-        assertThat(game.isInProgress()).isFalse();
-
-        game.start();
-        game.move(player, Direction.EAST);
-        game.move(player, Direction.EAST);
-
-        assertThat(player.isAlive()).isTrue();
-        Mockito.verify(levelObserver, Mockito.times(1)).levelWon();
-        assertThat(game.isInProgress()).isFalse();
-
-        game.stop();
-    }
-
-
     /**
      * When the user collides with a ghost and loses the game.
      */
