@@ -22,22 +22,40 @@ public abstract class GameCasesTest {
     private Player player;
 
 
+    /**
+     * Sets the launcher to be used in the tests.
+     * @param launcher launcher to be used.
+     */
     public void setLauncher(Launcher launcher) {
         this.launcher = launcher;
     }
 
+    /**
+     * Gets the launcher that was set to be used in the tests.
+     */
     public Launcher getLauncher() {
         return launcher;
     }
 
+    /**
+     * Sets the game to be used in the tests.
+     * @param game game to be used.
+     */
     public void setGame(Game game) {
         this.game = game;
     }
 
+    /**
+     * Gets the game that was set to be used in the tests.
+     */
     public Game getGame() {
         return game;
     }
 
+    /**
+     * Sets the player to be used in the tests.
+     * @param player player to be used.
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }

@@ -19,19 +19,25 @@ public class MultiLevelGame extends Game {
     /**
      * The level of this game.
      */
-    private final Level level;
+    private final List<Level> levels;
+
+    /**
+     * The current level.
+     */
+    private int currentLevel;
 
     /**
      *
      * @param player Player type
-     * @param level Level type
+     * @param levels Level type
      * @param pointCalculator PointCalculator type
      */
-    public MultiLevelGame(Player player, Level level, PointCalculator pointCalculator) {
+    public MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
         this.player = player;
-        this.level = level;
-        this.level.registerPlayer(player);
+        this.levels = levels;
+        this.currentLevel = 0;
+        this.levels.get(currentLevel).registerPlayer(player);
 
     }
 
@@ -43,6 +49,23 @@ public class MultiLevelGame extends Game {
 
     @Override
     public Level getLevel() {
-        return level;
+        return levels.get(currentLevel);
+    }
+
+    @Override
+    public void levelWon() {
+        currentLevel++;
+        if (currentLevel < levels.size()) {
+            levels.get(currentLevel).registerPlayer(player);
+        }
+        stop();
+    }
+
+    /**
+     * Getter for the current level for testing purposes.
+     * @return the number corresponding to the current level starting with 0.
+     */
+    public int getCurrentLevel() {
+        return currentLevel;
     }
 }
