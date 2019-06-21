@@ -32,6 +32,7 @@ public abstract class GameCasesTest {
 
     /**
      * Gets the launcher that was set to be used in the tests.
+     * @return launcher
      */
     public Launcher getLauncher() {
         return launcher;
@@ -47,6 +48,7 @@ public abstract class GameCasesTest {
 
     /**
      * Gets the game that was set to be used in the tests.
+     * @return game
      */
     public Game getGame() {
         return game;

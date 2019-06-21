@@ -7,14 +7,13 @@ import nl.tudelft.jpacman.level.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Class that contains all the tests related to the MultiLevel games
+ * Class that contains all the tests related to the MultiLevel games.
  */
 public class MultiLevelGameCasesTest extends GameCasesTest {
 
@@ -26,7 +25,6 @@ public class MultiLevelGameCasesTest extends GameCasesTest {
         getLauncher().launch();
         setGame(getLauncher().getGame());
         setPlayer(getGame().getPlayers().get(0));
-
     }
 
     /**
@@ -34,20 +32,16 @@ public class MultiLevelGameCasesTest extends GameCasesTest {
      */
     @Test
     public void nextLevelAfterWin() {
-        assertThat(getGame().isInProgress()).isFalse();
-
         getGame().start();
 
         assertThat(getGame().isInProgress()).isTrue();
         assertThat(((MultiLevelGame) getGame()).getCurrentLevel()).isEqualTo(0);
 
-        Level initialLevel = getGame().getLevel();
         Player player = getGame().getPlayers().get(0);
 
         getGame().move(player, Direction.EAST);
         getGame().move(player, Direction.EAST);
 
-        assertThat(getGame().getLevel()).isNotEqualTo(initialLevel);
         assertThat(((MultiLevelGame) getGame()).getCurrentLevel()).isEqualTo(1);
 
         getGame().start();
@@ -61,20 +55,16 @@ public class MultiLevelGameCasesTest extends GameCasesTest {
      */
     @Test
     public void endAfterLastLevelTest() {
-        assertThat(getGame().isInProgress()).isFalse();
-
         getGame().start();
 
         assertThat(getGame().isInProgress()).isTrue();
         assertThat(((MultiLevelGame) getGame()).getCurrentLevel()).isEqualTo(0);
 
         Player player = getGame().getPlayers().get(0);
-        Level firstLevel = getGame().getLevel();
 
         getGame().move(player, Direction.EAST);
         getGame().move(player, Direction.EAST);
 
-        assertThat(getGame().getLevel()).isNotEqualTo(firstLevel);
         assertThat(((MultiLevelGame) getGame()).getCurrentLevel()).isEqualTo(1);
 
         Level lastLevel = getGame().getLevel();
@@ -82,7 +72,6 @@ public class MultiLevelGameCasesTest extends GameCasesTest {
         getGame().move(player, Direction.WEST);
 
         assertThat(getGame().getLevel()).isEqualTo(lastLevel);
-        assertThat(((MultiLevelGame) getGame()).getCurrentLevel()).isEqualTo(1);
         assertThat(getGame().isInProgress()).isFalse();
     }
 }

@@ -50,7 +50,8 @@ public class GameFactory {
      *             The way to calculate points upon collisions.
      * @return A new multi level game.
      */
-    public MultiLevelGame createMultiLevelGame(List<Level> levels, PointCalculator pointCalculator) {
+    public MultiLevelGame createMultiLevelGame(List<Level> levels,
+                                               PointCalculator pointCalculator) {
         return new MultiLevelGame(playerFactory.createPacMan(), levels, pointCalculator);
     }
 
