@@ -36,4 +36,3 @@ Main contributors:
 3. To run the test suite and static analysis tools: `./gradlew check`
     1. For tests only run `./gradlew test`
     2. For static analysis tools only run `./gradlew staticAnalysis`
-	 
